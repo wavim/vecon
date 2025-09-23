@@ -47,5 +47,7 @@ export function render(hash: Uint16Array, params: Params): string {
 		return `<polygon points="${cell}" fill="${color}" />`;
 	});
 
-	return polygons.join("\n"); // TODO: wrap in SVG with shape-rendering="crispEdges"
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" shape-rendering="crispEdges">${
+		polygons.join("")
+	}</svg>`;
 }
