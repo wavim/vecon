@@ -1,5 +1,5 @@
-import { Face, layout } from "./layout";
-import { patterns } from "./pattern";
+import { patterns } from "./patterns";
+import { Face, layout } from "./polygons";
 
 export interface ParamRange {
 	min: number;
@@ -33,7 +33,7 @@ export function render(hash: Uint16Array, params: Params): string {
 
 	const mask = patterns[hash[5] % patterns.length];
 
-	const grid = layout.map(({ face, cell }, i) => {
+	const polygons = layout.map(({ face, cell }, i) => {
 		const variance = modulo(params.variance, (hash[6] ^ (i * 0x9e3779b9)) >>> 0);
 		const lighting = params.lighting[face];
 
@@ -48,6 +48,6 @@ export function render(hash: Uint16Array, params: Params): string {
 	});
 
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" shape-rendering="crispEdges">${
-		grid.join("")
+		polygons.join("")
 	}</svg>`;
 }

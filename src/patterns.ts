@@ -1,4 +1,4 @@
-type Pattern = /* dprint-ignore */ [
+export type Pattern = /* dprint-ignore */ [
 	number, number, number, number, number, number,
 	number, number, number, number, number, number,
 	number, number, number, number, number, number,
