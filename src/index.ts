@@ -26,7 +26,7 @@ const presets: Params = {
 	},
 
 	variance: {
-		min: 5,
+		min: -5,
 		max: 20,
 	},
 	lighting: {
