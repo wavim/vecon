@@ -34,6 +34,8 @@ const presets: Params = {
 		L: -4,
 		R: -8,
 	},
+
+	margin: 0,
 };
 
 /**
@@ -50,9 +52,13 @@ export function vecon(string: string, params: Partial<Params> = {}): string {
 		h: { ...params.h, ...presets.h },
 		s: { ...params.s, ...presets.s },
 		l: { ...params.l, ...presets.l },
+
 		shift: { ...params.shift, ...presets.shift },
 		alpha: { ...params.alpha, ...presets.alpha },
+
 		variance: { ...params.variance, ...presets.variance },
 		lighting: { ...params.lighting, ...presets.lighting },
+
+		margin: params.margin ?? presets.margin,
 	});
 }

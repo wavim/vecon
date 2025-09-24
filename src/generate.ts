@@ -17,6 +17,8 @@ export interface Params {
 
 	variance: ParamRange;
 	lighting: Spec<Face>;
+
+	margin: number;
 }
 
 export function modulo(range: ParamRange, number: number): number {
@@ -47,7 +49,7 @@ export function render(hash: Uint16Array, params: Params): string {
 		return base;
 	});
 
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" shape-rendering="crispEdges">${
-		polygons.join("")
-	}</svg>`;
+	return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-params.margin} ${-params.margin} ${
+		800 + 2 * params.margin
+	} ${800 + 2 * params.margin}" shape-rendering="crispEdges">${polygons.join("")}</svg>`;
 }
