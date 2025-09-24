@@ -3,11 +3,15 @@
 	"version": "1.0.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wavim/vecon"
+		"url": "git+https://github.com/wavim/vecon.git"
 	},
 	"license": "MIT",
-	"description": "",
-	"keywords": [],
+	"description": "Elegant SVG HashIcon",
+	"keywords": [
+		"identicon",
+		"svg-icons",
+		"artwork-creation"
+	],
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"main": "dist/index.cjs",

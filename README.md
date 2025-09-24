@@ -11,8 +11,8 @@
 This project is inspired by [HashIcon](https://github.com/emeraldpay/hashicon).
 Instead of drawing on canvas, VeCon generates SVGs.
 
-The core logic is similar, but the implementation, hash function, and
-patterns are different.
+The core logic is similar, but the implementation, hash function, and patterns
+are different.
 
 <br />
 <p align="center">
