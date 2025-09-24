@@ -30,11 +30,11 @@ export function render(hash: Uint16Array, params: Params): string {
 
 	const shift = modulo(params.shift, hash[3]);
 	const alpha = modulo(params.alpha, hash[4]);
-	
+
 	const mask = patterns[hash[5] % patterns.length];
 
-	const polygons = layout.map(({ face, cell }, i) => {
-		const variance = modulo(params.variance, Math.round(hash[6] / (i + 1)));
+	const grid = layout.map(({ face, cell }, i) => {
+		const variance = modulo(params.variance, (hash[6] ^ (i * 0x9e3779b9)) >>> 0);
 		const lighting = params.lighting[face];
 
 		let base = `<polygon points="${cell}" fill="hsl(${h + variance} ${s} ${l + lighting})" />`;
@@ -48,6 +48,6 @@ export function render(hash: Uint16Array, params: Params): string {
 	});
 
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" shape-rendering="crispEdges">${
-		polygons.join("")
+		grid.join("")
 	}</svg>`;
 }
