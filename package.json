@@ -21,8 +21,7 @@
 		"prepublish": "pkgroll --clean-dist --minify"
 	},
 	"dependencies": {
-		"@noble/hashes": "^2.0.1",
-		"colorjs.io": "^0.5.2"
+		"@noble/hashes": "^2.0.1"
 	},
 	"devDependencies": {
 		"dprint": "^0.50.2",

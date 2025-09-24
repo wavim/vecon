@@ -1,4 +1,3 @@
-import Color from "colorjs.io";
 import { Face, layout } from "./layout";
 import { patterns } from "./pattern";
 
@@ -38,13 +37,14 @@ export function render(hash: Uint16Array, params: Params): string {
 		const variance = modulo(params.variance, Math.round(hash[6] / (i + 1)));
 		const lighting = params.lighting[face];
 
-		let color = new Color("HSL", [h + variance, s, l + lighting]).to("LAB");
+		let base = `<polygon points="${cell}" fill="hsl(${h + variance} ${s} ${l + lighting})" />`;
 
-		if (mask[i] > 0) {
-			const shifted = new Color("HSL", [h + variance + shift, s, l + lighting]);
-			color = color.range(shifted)(mask[i] * alpha / 10);
+		if (mask[i]) {
+			base += `<polygon points="${cell}" fill="hsl(${h + variance + shift} ${s} ${l + lighting} / ${
+				alpha.toFixed(2)
+			})" />`;
 		}
-		return `<polygon points="${cell}" fill="${color}" />`;
+		return base;
 	});
 
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" shape-rendering="crispEdges">${
