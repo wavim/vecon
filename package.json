@@ -1,6 +1,6 @@
 {
 	"name": "vecon",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/wavim/vecon.git"

@@ -2,43 +2,6 @@ import { blake3 } from "@noble/hashes/blake3.js";
 import { utf8ToBytes } from "@noble/hashes/utils.js";
 import { Params, render } from "./generate";
 
-const presets: Params = {
-	h: {
-		min: 0,
-		max: 360,
-	},
-	s: {
-		min: 70,
-		max: 100,
-	},
-	l: {
-		min: 45,
-		max: 65,
-	},
-
-	shift: {
-		min: 60,
-		max: 300,
-	},
-	alpha: {
-		min: 0.4,
-		max: 1,
-	},
-
-	variance: {
-		min: -5,
-		max: 20,
-	},
-	lighting: {
-		T: 10,
-		L: -4,
-		R: -8,
-	},
-
-	space: 0,
-	style: "shape-rendering: crispEdges;",
-};
-
 /**
  * Build Elegant SVG HashIcon
  * @param string Raw username
@@ -50,17 +13,46 @@ export function vecon(string: string, params: Partial<Params> = {}): string {
 	const array = blake3(input, { dkLen: 14 }).buffer;
 
 	return render(new Uint16Array(array), {
-		h: { ...params.h, ...presets.h },
-		s: { ...params.s, ...presets.s },
-		l: { ...params.l, ...presets.l },
+		h: {
+			min: 0,
+			max: 360,
+			...params.h,
+		},
+		s: {
+			min: 70,
+			max: 100,
+			...params.s,
+		},
+		l: {
+			min: 45,
+			max: 65,
+			...params.l,
+		},
 
-		shift: { ...params.shift, ...presets.shift },
-		alpha: { ...params.alpha, ...presets.alpha },
+		shift: {
+			min: 60,
+			max: 300,
+			...params.shift,
+		},
+		alpha: {
+			min: 0.4,
+			max: 1,
+			...params.alpha,
+		},
 
-		variance: { ...params.variance, ...presets.variance },
-		lighting: { ...params.lighting, ...presets.lighting },
+		variance: {
+			min: -5,
+			max: 20,
+			...params.variance,
+		},
+		lighting: {
+			T: 10,
+			L: -4,
+			R: -8,
+			...params.lighting,
+		},
 
-		space: params.space ?? presets.space,
-		style: presets.style + (params.style ?? ""),
+		space: params.space ?? 0,
+		style: params.style ?? "",
 	});
 }
