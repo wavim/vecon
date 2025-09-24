@@ -4,7 +4,7 @@ const frame = document.getElementById("frame") as HTMLDivElement;
 const input = document.getElementById("input") as HTMLInputElement;
 
 const render = () => {
-  frame.innerHTML = vecon(input.value, { space: 200, style: "width: 100%;" });
+  frame.innerHTML = vecon(input.value, { space: 100, style: "width: 100%;" });
 };
 
 render();
@@ -21,10 +21,10 @@ frame.onclick = async () => {
   });
 
   const cvs = document.createElement("canvas");
-  [cvs.width, cvs.height] = [1200, 1200];
+  [cvs.width, cvs.height] = [1000, 1000];
 
   const ctx = cvs.getContext("2d")!;
-  ctx.drawImage(image, 0, 0, 1200, 1200);
+  ctx.drawImage(image, 0, 0, 1000, 1000);
 
   const link = document.createElement("a");
   link.download = `vecon-'${input.value}'`;
