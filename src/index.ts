@@ -35,7 +35,8 @@ const presets: Params = {
 		R: -8,
 	},
 
-	margin: 0,
+	space: 0,
+	style: "shape-rendering: crispEdges;",
 };
 
 /**
@@ -59,6 +60,7 @@ export function vecon(string: string, params: Partial<Params> = {}): string {
 		variance: { ...params.variance, ...presets.variance },
 		lighting: { ...params.lighting, ...presets.lighting },
 
-		margin: params.margin ?? presets.margin,
+		space: params.space ?? presets.space,
+		style: presets.style + (params.style ?? ""),
 	});
 }
