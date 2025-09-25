@@ -3,16 +3,13 @@ import { vecon } from "vecon";
 const frame = document.getElementById("frame") as HTMLDivElement;
 const input = document.getElementById("input") as HTMLInputElement;
 
-const margin = 150;
-const render = () => {
-  frame.innerHTML = vecon(input.value, {
-    space: margin,
-    style: "width: 100%;",
-  });
+const space = 150;
+const paint = () => {
+  frame.innerHTML = vecon(input.value, { space, style: "width: 100%;" });
 };
 
-render();
-input.oninput = render;
+paint();
+input.oninput = paint;
 
 // modified from https://stackoverflow.com/a/78708218
 frame.onclick = async () => {
@@ -25,10 +22,10 @@ frame.onclick = async () => {
   });
 
   const cvs = document.createElement("canvas");
-  [cvs.width, cvs.height] = [800 + 2 * margin, 800 + 2 * margin];
+  [cvs.width, cvs.height] = [800 + 2 * space, 800 + 2 * space];
 
   const ctx = cvs.getContext("2d")!;
-  ctx.drawImage(image, 0, 0, 800 + 2 * margin, 800 + 2 * margin);
+  ctx.drawImage(image, 0, 0, 800 + 2 * space, 800 + 2 * space);
 
   const link = document.createElement("a");
   link.download = `vecon-'${input.value}'`;
