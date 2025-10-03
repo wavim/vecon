@@ -8,11 +8,7 @@
 
 ### Inspiration
 
-This project is inspired by [HashIcon](https://github.com/emeraldpay/hashicon).
-Instead of drawing on canvas, VeCon generates SVGs.
-
-The core logic is similar, but the implementation, hash function, and patterns
-are different.
+The project is inspired by [HashIcon](https://github.com/emeraldpay/hashicon).
 
 <br />
 <p align="center">
@@ -20,4 +16,15 @@ are different.
 </p>
 <br />
 
-Get your unique [VeCon](https://wavim.github.io/vecon/) now!
+Get your unique [VeCon](https://wavim.github.io/vecon/) now.
+
+### Implementation
+
+VeCon is a minimal, polished, ground-up reimplementation of Hashicon.
+
+It advances the original by replacing its naive PRNGs and hard-coded layouts
+with a Fibonacci XOR generator and a deterministic Fisher-Yates shuffle,
+ensuring superior entropy and unique patterns.
+
+The implementation also includes BLAKE3 hashing, SVG output, additional tuned
+parameters, and comprehensive bug fixes.
