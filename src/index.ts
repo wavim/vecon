@@ -1,6 +1,6 @@
 import { blake3 } from "@noble/hashes/blake3.js";
 import { utf8ToBytes } from "@noble/hashes/utils.js";
-import { Params, render } from "./generate";
+import { draw, Params } from "./draw";
 
 /**
  * Build Elegant SVG HashIcon
@@ -9,40 +9,45 @@ import { Params, render } from "./generate";
  * @returns SVG string
  */
 export function vecon(string: string, params: Partial<Params> = {}): string {
-	const input = utf8ToBytes(string);
-	const array = blake3(input, { dkLen: 14 }).buffer;
+	const bytes = utf8ToBytes(string);
+	const hash = blake3(bytes, { dkLen: 16 }).buffer;
 
-	return render(new Uint16Array(array), {
+	return draw(new Uint16Array(hash), {
 		h: {
 			min: 0,
 			max: 360,
 			...params.h,
 		},
 		s: {
-			min: 70,
-			max: 100,
+			min: 60,
+			max: 90,
 			...params.s,
 		},
 		l: {
-			min: 45,
-			max: 65,
+			min: 40,
+			max: 70,
 			...params.l,
 		},
 
+		count: {
+			min: 4,
+			max: 8,
+			...params.count,
+		},
 		shift: {
-			min: 60,
-			max: 300,
+			min: -45,
+			max: 45,
 			...params.shift,
 		},
 		alpha: {
-			min: 0.4,
-			max: 1,
+			min: 0.7,
+			max: 0.9,
 			...params.alpha,
 		},
 
 		variance: {
-			min: -5,
-			max: 20,
+			min: -10,
+			max: 10,
 			...params.variance,
 		},
 		lighting: {
@@ -52,7 +57,7 @@ export function vecon(string: string, params: Partial<Params> = {}): string {
 			...params.lighting,
 		},
 
-		space: params.space ?? 0,
-		style: params.style ?? "",
+		margin: params.margin ?? 0,
+		styles: params.styles ?? "",
 	});
 }
