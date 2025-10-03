@@ -40,7 +40,7 @@ export function draw(hash: Uint16Array, params: Params): string {
 	const seed = hash[6];
 	const mask = Array(24).fill(false).fill(true, -count) as boolean[];
 
-	for (let i = 1; i < 24; i++) {
+	for (let i = 24 - count; i < 24; i++) {
 		const j = goldHash(seed, i) % (i + 1);
 		[mask[i], mask[j]] = [mask[j], mask[i]];
 	}
