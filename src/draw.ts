@@ -46,7 +46,7 @@ export function draw(hash: Uint16Array, params: Params): string {
 	}
 
 	const polygons = grid.map(({ f, p }, i) => {
-		const seed = goldHash(hash[7], i);
+		const seed = goldHash(hash[7], i + 1);
 
 		const variance = fitRange(seed, params.variance);
 		const lighting = params.lighting[f];
