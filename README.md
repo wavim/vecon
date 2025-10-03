@@ -16,7 +16,7 @@ The project is inspired by [HashIcon](https://github.com/emeraldpay/hashicon).
 </p>
 <br />
 
-Get your unique [VeCon](https://wavim.github.io/vecon/) now.
+[Get your unique VeCon](https://wavim.github.io/vecon/) now!
 
 ### Implementation
 
