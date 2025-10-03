@@ -40,8 +40,8 @@ export function vecon(string: string, params: Partial<Params> = {}): string {
 			...params.shift,
 		},
 		alpha: {
-			min: 0.7,
-			max: 0.9,
+			min: 70,
+			max: 90,
 			...params.alpha,
 		},
 

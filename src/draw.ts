@@ -25,7 +25,7 @@ function fitRange(value: number, range: Range): number {
 }
 
 function goldHash(seed: number, i: number): number {
-	return (seed ^ (i * 0x9e3779b9)) >>> 0;
+	return (seed ^ 0x9e3779b9 * i) >>> 0;
 }
 
 export function draw(hash: Uint16Array, params: Params): string {
@@ -54,9 +54,7 @@ export function draw(hash: Uint16Array, params: Params): string {
 		let poly = `<polygon points="${p}" fill="hsl(${h + variance} ${s} ${l + lighting})" />`;
 
 		if (mask[i]) {
-			poly += `<polygon points="${p}" fill="hsl(${h + variance + shift} ${s} ${l + lighting} / ${
-				alpha.toFixed(2)
-			})" />`;
+			poly += `<polygon points="${p}" fill="hsl(${h + variance + shift} ${s} ${l + lighting} / ${alpha}%)" />`;
 		}
 
 		return poly;
