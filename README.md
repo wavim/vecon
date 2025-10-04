@@ -20,11 +20,11 @@ The project is inspired by [HashIcon](https://github.com/emeraldpay/hashicon).
 
 ### Implementation
 
-VeCon is a minimal, polished, ground-up reimplementation of Hashicon.
+VeCon is a minimal, polished, ground-up reimplementation of HashIcon.
 
-It advances the original by replacing its naive PRNGs and hard-coded layouts
-with a Fibonacci XOR generator and a deterministic Fisher-Yates shuffle,
-ensuring superior entropy and unique patterns.
+It advances the original by replacing its naive PRNGs and hard-coded patterns
+with a multiplicative XOR $\phi$-Hash and a deterministic Fisher-Yates shuffle,
+ensuring superior entropy and uniqueness.
 
 The implementation also includes BLAKE3 hashing, SVG output, additional tuned
 parameters, and comprehensive bug fixes.
