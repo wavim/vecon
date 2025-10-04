@@ -4,12 +4,15 @@ const frame = document.getElementById("frame") as HTMLDivElement;
 const input = document.getElementById("input") as HTMLInputElement;
 
 const margin = 150;
-const render = () => {
-  frame.innerHTML = vecon(input.value, { margin, styles: "width: 100%;" });
+const render = (name?: string) => {
+  frame.innerHTML = vecon(name?.length ? name : "damn", {
+    margin,
+    styles: "width: 100%;",
+  });
 };
 
 render();
-input.oninput = render;
+input.oninput = () => render(input.value);
 
 // modified from https://stackoverflow.com/a/78708218
 frame.onclick = async () => {
