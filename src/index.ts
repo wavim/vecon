@@ -12,15 +12,15 @@ export function vecon(input: string, params?: Partial<Params>): string {
 	return draw(
 		buffer,
 		Object.assign({
-			h: {
+			H: {
 				min: 0,
 				max: 360,
 			},
-			s: {
+			S: {
 				min: 70,
 				max: 100,
 			},
-			l: {
+			L: {
 				min: 40,
 				max: 60,
 			},
