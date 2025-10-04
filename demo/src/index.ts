@@ -28,7 +28,7 @@ frame.onclick = async () => {
   ctx.drawImage(image, 0, 0, 800 + 2 * margin, 800 + 2 * margin);
 
   const link = document.createElement("a");
-  link.download = `(${input.value})`;
+  link.download = "vecon";
   link.href = cvs.toDataURL("image/png", 1);
 
   link.click();
