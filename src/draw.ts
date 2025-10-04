@@ -21,11 +21,11 @@ export interface Params {
 }
 
 function fitRange(value: number, range: Range): number {
-	return range.min + value % (range.max - range.min);
+	return range.min + (value % (range.max - range.min + 1));
 }
 
 function goldHash(seed: number, i: number): number {
-	return (seed ^ 0x9e3779b9 * i) >>> 0;
+	return (seed ^ (0x9e3779b9 * i)) >>> 0;
 }
 
 export function draw(hash: Uint16Array, params: Params): string {
