@@ -24,8 +24,8 @@ function fitRange(value: number, range: Range): number {
 	return range.min + (value % (range.max - range.min + 1)); // modulo is minor biased
 }
 
-function fibHash(seed: number, i: number): number {
-	return ((1 + seed) ^ (0x9e3779b9 * i)) >>> 0; // seed >= 0 && i > 0
+function phiHash(seed: number, i: number): number {
+	return (seed ^ (i * 0x9e3779b9)) >>> 0; // seed > 0 && i > 0
 }
 
 export function draw(hash: Uint16Array, params: Params): string {
@@ -37,18 +37,18 @@ export function draw(hash: Uint16Array, params: Params): string {
 	const shift = fitRange(hash[4], params.shift);
 	const alpha = fitRange(hash[5], params.alpha);
 
-	const seed1 = hash[6];
-	const seed2 = hash[7];
+	const seed1 = hash[6] + 1;
+	const seed2 = hash[7] + 1;
 
 	const mask: boolean[] = Array(24).fill(false).fill(true, -count);
 
 	for (let i = 24 - count; i < 24; i++) {
-		const j = fibHash(seed1, i) % (i + 1); // minor https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias
+		const j = phiHash(seed1, i) % (i + 1); // minor https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias
 		[mask[i], mask[j]] = [mask[j], mask[i]];
 	}
 
 	const polygons = grid.map(({ f, p }, i) => {
-		const v = fibHash(seed2, i + 1);
+		const v = phiHash(seed2, i + 1);
 		const variance = fitRange(v, params.variance);
 
 		const lighting = params.lighting[f];
