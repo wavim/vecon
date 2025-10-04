@@ -25,7 +25,7 @@ function fitRange(value: number, range: Range): number {
 }
 
 function phiHash(seed: number, i: number): number {
-	return (seed ^ (i * 0x9e3779b9)) >>> 0; // seed > 0 && i > 0
+	return (seed ^ (0x9e3779b9 * i)) >>> 0; // seed > 0 and i > 0 for randomness
 }
 
 export function draw(hash: Uint16Array, params: Params): string {
