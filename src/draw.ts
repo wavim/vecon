@@ -21,11 +21,11 @@ export interface Params {
 }
 
 function fitRange(value: number, range: Range): number {
-	return range.min + (value % (range.max - range.min + 1)); // modulo is minor biased
+	return range.min + (value % (range.max - range.min + 1)); // minor modulo bias
 }
 
 function phiHash(seed: number, i: number): number {
-	return (seed ^ (0x9e3779b9 * i)) >>> 0; // seed > 0 and i > 0 for randomness
+	return (seed ^ (0x9e3779b9 * i)) >>> 0; // must i != 0
 }
 
 export function draw(hash: Uint16Array, params: Params): string {
@@ -37,8 +37,8 @@ export function draw(hash: Uint16Array, params: Params): string {
 	const shift = fitRange(hash[4], params.shift);
 	const alpha = fitRange(hash[5], params.alpha);
 
-	const seed1 = hash[6] + 1;
-	const seed2 = hash[7] + 1;
+	const seed1 = hash[6];
+	const seed2 = hash[7];
 
 	const mask: boolean[] = Array(24).fill(false).fill(true, -count);
 
